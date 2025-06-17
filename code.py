@@ -1,20 +1,24 @@
 import tkinter as tk
-from tkinter import messagebox
 
-def on_click():
-    balik_btn.pack()  # Показать кнопку Балик
-
-def on_balik():
-    messagebox.showinfo("Сообщение", "Нажата кнопка Балик!")
+def send_message():
+    msg = entry.get().strip()
+    if msg:
+        chat_text.config(state='normal')
+        chat_text.insert(tk.END, "Вы: " + msg + "\n")
+        chat_text.config(state='disabled')
+        entry.delete(0, tk.END)
+        chat_text.see(tk.END)  # прокрутка вниз
 
 root = tk.Tk()
-root.title("Кнопки Клик и Балик")
+root.title("Простой чат")
 
-click_btn = tk.Button(root, text="Клик", command=on_click)
-click_btn.pack(pady=10)
+chat_text = tk.Text(root, state='disabled', width=50, height=20, wrap='word')
+chat_text.pack(padx=10, pady=10)
 
-balik_btn = tk.Button(root, text="Балик", command=on_balik)
-# Скрываем кнопку Балик изначально (не упаковываем)
-# balik_btn.pack() не вызываем
+entry = tk.Entry(root, width=40)
+entry.pack(side=tk.LEFT, padx=(10,0), pady=(0,10))
+
+send_button = tk.Button(root, text="Отправить", command=send_message)
+send_button.pack(side=tk.LEFT, padx=10, pady=(0,10))
 
 root.mainloop()
