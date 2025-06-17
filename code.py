@@ -1,25 +1,20 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <title>Кнопка Клик и Балик</title>
-</head>
-<body>
-  <button id="clickBtn">Клик</button>
-  <button id="balikBtn" style="display:none;">Балик</button>
+import tkinter as tk
+from tkinter import messagebox
 
-  <script>
-    const clickBtn = document.getElementById('clickBtn');
-    const balikBtn = document.getElementById('balikBtn');
+def on_click():
+    balik_btn.pack()  # Показать кнопку Балик
 
-    clickBtn.addEventListener('click', () => {
-      // Показать кнопку Балик при клике на Клик
-      balikBtn.style.display = 'inline-block';
-    });
+def on_balik():
+    messagebox.showinfo("Сообщение", "Нажата кнопка Балик!")
 
-    balikBtn.addEventListener('click', () => {
-      alert('Нажата кнопка Балик!');
-    });
-  </script>
-</body>
-</html>
+root = tk.Tk()
+root.title("Кнопки Клик и Балик")
+
+click_btn = tk.Button(root, text="Клик", command=on_click)
+click_btn.pack(pady=10)
+
+balik_btn = tk.Button(root, text="Балик", command=on_balik)
+# Скрываем кнопку Балик изначально (не упаковываем)
+# balik_btn.pack() не вызываем
+
+root.mainloop()
