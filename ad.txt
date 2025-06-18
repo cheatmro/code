@@ -1,2 +1,1 @@
-text: подпишись на наш канала
-link: https://www.youtube.com/
+
